@@ -19,7 +19,7 @@ def findposts(subreddit):
         'help', 'newbie', 'noob', 'dying', 'trouble', 'new', 'advice', 'advise', 'tips', ' id ', 'id.', 'id?',
         'identify', 'save', 'trouble'
     ]
-    for submission in subreddit.new(limit=30):
+    for submission in subreddit.new(limit=3):
         if any(word in submission.title.lower() for word in keywords):
             if checkifresponded(submission) is False:
                 respond(submission)
