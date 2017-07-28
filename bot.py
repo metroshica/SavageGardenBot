@@ -1,5 +1,6 @@
 import praw
 import credentials
+import time
 
 
 # Initial connection and subreddit selection
@@ -18,7 +19,7 @@ def findposts(subreddit):
         'help', 'newbie', 'noob', 'dying', 'trouble', 'new', 'advice', 'advise', 'tips', ' id ', 'id.', 'id?',
         'identify', 'save', 'trouble'
     ]
-    for submission in subreddit.new(limit=20):
+    for submission in subreddit.new(limit=30):
         if any(word in submission.title.lower() for word in keywords):
             if checkifresponded(submission) is False:
                 respond(submission)
@@ -53,21 +54,21 @@ def respond(submission):
         responsetext = responsetext + sarrtext + '\n\n' + neptext
     elif 'nepenthes' in title:
         responsetext = responsetext + neptext
-    elif 'sarr' in  title:
+    elif 'sarr' in title:
         responsetext = responsetext + sarrtext
     else:
         responsetext = responsetext + vfttext + sarrtext + neptext
 
-
     submission.reply(responsetext + faq).mod.distinguish()
 
-    print('Found one')
-    pass
+    print(submission.title + " - https://www.reddit.com" + submission.permalink)
 
 
 def main():
-    subreddit = connect()
-    findposts(subreddit)
+    while True:
+        subreddit = connect()
+        findposts(subreddit)
+        time.sleep(60)
 
 
 if __name__ == "__main__":
