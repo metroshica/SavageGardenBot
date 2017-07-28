@@ -19,7 +19,7 @@ def findposts(subreddit):
         'help', 'newbie', 'noob', 'dying', 'trouble', 'new', 'advice', 'advise', 'tips', ' id ', 'id.', 'id?',
         'identify', 'save', 'trouble'
     ]
-    for submission in subreddit.new(limit=20):
+    for submission in subreddit.new(limit=10):
         if any(word in submission.title.lower() for word in keywords):
             if checkifresponded(submission) is False:
                 respond(submission)
@@ -37,8 +37,31 @@ def checkifresponded(submission):
 
 # Respond to post with helpful links
 def respond(submission):
-    responsetext = "Looks like you're new here. Here's some info..."
-    submission.reply(responsetext)
+    title = submission.title.lower()
+    vfttext = '**Venus Flytraps**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/venus-fly-trap-care-sheet)\t\n\t\n[Dormancy](http://www.flytrapcare.com/venus-fly-trap-dormancy.html)\t\n\t\n'
+    sarrtext = '**Sarracenias**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/sarracenia-care-sheet)\t\n\t\n'
+    neptext = '**Nepenthes**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/nepenthes-care-sheet/)\t\n\t\n'
+
+    responsetext = '''Welcome to /r/SavageGarden! Looks like you're looking for some help Here are some great growing
+    guides and a link to our FAQ that covers the most common questions we receive:\t\n\t\n'''
+
+    faq = '**General Questions**\t\n\t\n[Frequently Asked Questions](http://sarracenia.com/faq.html)'
+    vftwords = ['flytrap', 'fly trap', 'vft']
+
+    if any(word in title for word in vftwords):
+        responsetext = responsetext + vfttext
+    elif 'pitcher' in title:
+        responsetext = responsetext + sarrtext + '\n\n' + neptext
+    elif 'nepenthes' in title:
+        responsetext = responsetext + neptext
+    elif 'sarr' in  title:
+        responsetext = responsetext + sarrtext
+    else:
+        responsetext = responsetext + vfttext + sarrtext + neptext
+
+
+    submission.reply(responsetext + faq)
+
     print('Found one')
     pass
 
