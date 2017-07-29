@@ -66,8 +66,8 @@ def respond(submission, foundwords):
 
     submission.reply(responsetext + faq).mod.distinguish()
 
-    print(submission.title + " - https://www.reddit.com" + submission.permalink + " " + foundwords)
-    logger.log(submission.title + " - https://www.reddit.com" + submission.permalink + " " + foundwords)
+    print(submission.title + " - https://www.reddit.com" + submission.permalink + " " + str(foundwords))
+    logger.log(submission.title + " - https://www.reddit.com" + submission.permalink + " " + str(foundwords))
 
 
 def main():
