@@ -1,6 +1,7 @@
 import praw
 import credentials
 import time
+import logger
 
 
 # Initial connection and subreddit selection
@@ -21,8 +22,12 @@ def findposts(subreddit):
     ]
     for submission in subreddit.new(limit=3):
         if any(word in submission.title.lower() for word in keywords):
+            foundwords = []
+            for word in keywords:
+                if word in submission.title.lower():
+                    foundwords.append(word)
             if checkifresponded(submission) is False:
-                respond(submission)
+                    respond(submission, foundwords)
 
 
 # Check if bot has already responded or not
@@ -36,7 +41,7 @@ def checkifresponded(submission):
 
 
 # Respond to post with helpful links
-def respond(submission):
+def respond(submission, foundwords):
     title = submission.title.lower()
     vfttext = '**Venus Flytraps**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/venus-fly-trap-care-sheet)\t\n\t\n[Dormancy](http://www.flytrapcare.com/venus-fly-trap-dormancy.html)\t\n\t\n'
     sarrtext = '**Sarracenias**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/sarracenia-care-sheet)\t\n\t\n[Dormancy](http://www.flytrapcare.com/store/sarracenia-care-sheet#tip6)\t\n\t\n'
@@ -61,7 +66,8 @@ def respond(submission):
 
     submission.reply(responsetext + faq).mod.distinguish()
 
-    print(submission.title + " - https://www.reddit.com" + submission.permalink)
+    print(submission.title + " - https://www.reddit.com" + submission.permalink + " " + foundwords)
+    logger.log(submission.title + " - https://www.reddit.com" + submission.permalink + " " + foundwords)
 
 
 def main():
