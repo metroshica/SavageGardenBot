@@ -18,7 +18,7 @@ def connect():
 def findposts(subreddit):
     keywords = [
         'help', 'newbie', 'noob', 'dying', 'trouble', 'new', 'advice', 'advise', 'tips', ' id ', 'id.', 'id?',
-        'identify', 'save', 'trouble'
+        'identify', 'save', 'trouble', 'first time'
     ]
     for submission in subreddit.new(limit=3):
         if any(word in submission.title.lower() for word in keywords):
