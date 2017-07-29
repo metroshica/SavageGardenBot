@@ -45,7 +45,7 @@ def respond(submission, foundwords):
     title = submission.title.lower()
     vfttext = '**Venus Flytraps**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/venus-fly-trap-care-sheet)\t\n\t\n[Dormancy](http://www.flytrapcare.com/venus-fly-trap-dormancy.html)\t\n\t\n'
     sarrtext = '**Sarracenias**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/sarracenia-care-sheet)\t\n\t\n[Dormancy](http://www.flytrapcare.com/store/sarracenia-care-sheet#tip6)\t\n\t\n'
-    neptext = '**Nepenthes**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/nepenthes-care-sheet/)\t\n\t\n'
+    neptext = '**Nepenthes**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/nepenthes-care-sheet/)\t\n\t\n[Temperature Chart](https://www.carnivorousplants.co.uk/resources/nepenthes-interactive-guide/)\t\n\t\n'
 
     responsetext = '''Welcome to /r/SavageGarden! Looks like you're looking for some help. Here are some great growing
     guides and a link to our FAQ that covers the most common questions we receive:\t\n\t\n'''
