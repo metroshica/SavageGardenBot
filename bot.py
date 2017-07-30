@@ -2,6 +2,7 @@ import praw
 import credentials
 import time
 import logger
+import sys
 
 
 # Initial connection and subreddit selection
@@ -72,8 +73,11 @@ def respond(submission, foundwords):
 
 def main():
     while True:
-        subreddit = connect()
-        findposts(subreddit)
+        try:
+            subreddit = connect()
+            findposts(subreddit)
+        except:
+            logger.log("Unexpected error: " + str(sys.exc_info()[0]))
         time.sleep(60)
 
 
