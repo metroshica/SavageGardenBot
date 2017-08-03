@@ -18,7 +18,7 @@ def connect():
 # Find posts that have one or more new grower keywords
 def findposts(subreddit):
     keywords = [
-        'help', 'newbie', 'noob', 'dying', 'trouble', 'new', 'advice', 'advise', 'tips', ' id ', 'id.', 'id?',
+        'help', 'newbie', 'noob', 'dying', 'trouble', 'advice', 'advise', 'tips', ' id ', 'id.', 'id?',
         'identify', 'save', 'trouble', 'first time'
     ]
     for submission in subreddit.new(limit=3):
