@@ -18,8 +18,7 @@ def connect():
 # Find posts that have one or more new grower keywords
 def findposts(subreddit):
     keywords = [
-        'help', 'newbie', 'noob', 'dying', 'trouble', 'advice', 'advise', 'tips', ' id ', 'id.', 'id?',
-        'identify', 'save', 'trouble', 'first time'
+        'help', 'newbie', 'noob', 'dying', 'trouble', 'advice', 'advise', 'tips', 'save', 'trouble', 'first time'
     ]
     for submission in subreddit.new(limit=3):
         if any(word in submission.title.lower() for word in keywords):
@@ -48,6 +47,7 @@ def respond(submission, foundwords):
     sarrtext = '**Sarracenias**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/sarracenia-care-sheet)\t\n\t\n[Dormancy](http://www.flytrapcare.com/store/sarracenia-care-sheet#tip6)\t\n\t\n'
     neptext = '**Nepenthes**\t\n\t\n[Growing Guide](http://www.flytrapcare.com/store/nepenthes-care-sheet/)\t\n\t\n[Temperature Chart](https://www.carnivorousplants.co.uk/resources/nepenthes-interactive-guide/)\t\n\t\n'
     sundewtext = '**Sundews**\t\n\t\n[Growing Guide](http://www.growsundews.com/sundews/sundew_cultivation_materials_and_tray_method_preparation.html)\t\n\t\n[Great Sundew Resource Site](http://www.growsundews.com/)\t\n\t\n'
+    pingtext = '**Pinguiculas**\t\n\t\n[Growing Guide](https://www.growcarnivorousplants.com/Articles.asp?ID=263)\t\n\t\n'
 
     responsetext = '''Welcome to /r/SavageGarden! Looks like you're looking for some help. Here are some great growing
     guides and a link to our FAQ that covers the most common questions we receive:\t\n\t\n'''
@@ -65,6 +65,8 @@ def respond(submission, foundwords):
         responsetext = responsetext + sarrtext
     elif 'sundew' in title:
         responsetext = responsetext + sundewtext
+    elif 'ping' in title or 'butterwort' in title:
+        responsetext = responsetext + pingtext
     else:
         responsetext = responsetext + vfttext + sarrtext + neptext + sundewtext
 
