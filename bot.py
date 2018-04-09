@@ -20,7 +20,11 @@ def findposts(subreddit):
     keywords = [
         'help', 'newbie', 'noob', 'dying', 'trouble', 'advice', 'advise', 'tips', 'save', 'trouble', 'first time'
     ]
+    TOKEN = TBD024
+    client = discord.Client()
     for submission in subreddit.new(limit=3):
+        msg = submission.format(message)
+        await.client.send_message(message.channel, msg)
         if any(word in submission.title.lower() for word in keywords):
             foundwords = []
             for word in keywords:
