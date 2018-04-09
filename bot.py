@@ -3,6 +3,7 @@ import credentials
 import time
 import logger
 import sys
+import discord
 
 
 # Initial connection and subreddit selection
